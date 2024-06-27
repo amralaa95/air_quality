@@ -14,8 +14,8 @@ export class IQAirController {
   constructor(private readonly service: IQAirService) { }
 
   @Get('nearst_city')
-  async getNearstCityData(@Query('longitude') lon: string, @Query('latitude') lat: string){
-    const nearestCityData = await this.service.getNearestCityData(lon, lat);
+  async getNearstCityData(@Query('longitude') longitude: number, @Query('latitude') latitude: number){
+    const nearestCityData = await this.service.getNearestCityData(longitude, latitude);
     return {
       Result: {
         Pollution: nearestCityData.data.current.pollution
@@ -24,7 +24,7 @@ export class IQAirController {
   }
 
   @Get('hieghst_pollution')
-  async getHieghstPollution(@Query('longitude') lon: string, @Query('latitude') lat: string): Promise<ZonePollution[]> {
-    return this.service.findZonePollution(lon, lat);
+  async getHieghstPollution(@Query('longitude') longitude: number, @Query('latitude') latitude: number): Promise<ZonePollution> {
+    return this.service.findHigestZonePollution(longitude, latitude);
   }
 }

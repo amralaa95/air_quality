@@ -2,6 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 const DataTypes = require('sequelize').DataTypes;
+const sequelize = require('sequelize');
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
@@ -39,6 +40,18 @@ module.exports = {
       timestamp: {
         allowNull: false,
         type: 'TIMESTAMPTZ',
+      },
+      createdAt: {
+        allowNull: false,
+        type: 'TIMESTAMPTZ',
+        field: 'created_at',
+        defaultValue: sequelize.literal(`timezone('utc', NOW())`),
+      },
+      updatedAt: {
+        allowNull: false,
+        type: 'TIMESTAMPTZ',
+        field: 'updated_at',
+        defaultValue: sequelize.literal(`timezone('utc', NOW())`),
       },
     });
   },

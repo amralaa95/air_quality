@@ -2,7 +2,7 @@ import { Table, Model, Column, PrimaryKey, DataType } from 'sequelize-typescript
 
 // benefits of explicit nulls in type?
 export type ZonePollution = {
-  id: string;
+  id?: string;
   country: string;
   city: string;
   longitude: number;
