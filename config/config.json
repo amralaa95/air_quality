@@ -1,0 +1,1 @@
+{ "username": "amralaa", "password": "", "port": "5432", "database": "air_quality_db", "host": "localhost", "dialect": "postgres", "operatorsAliases": "0" }

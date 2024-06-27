@@ -1,0 +1,26 @@
+{
+  "environment": "dev",
+  "logLevel": "info",
+  "iqAirApiBaseUrl": "http://api.airvisual.com/",
+  "sentry": {
+    "enabled": false,
+    "url": "",
+    "lambdaShutdownWait": 200
+  },
+  "databases": {
+    "host": "localhost",
+    "port": 5432,
+    "database": "air_quality_db",
+    "dialect": "postgres",
+    "autoSyncSchema": false
+  },
+  "secrets": {
+    "databases": {
+      "username": "amralaa",
+      "password": ""
+    },
+    "iqAir": {
+      "apikey": "9a4cc037-20b5-42c4-a66d-17ad6245e2ba"
+    }
+  }
+}
