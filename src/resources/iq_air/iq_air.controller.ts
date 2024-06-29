@@ -13,18 +13,28 @@ import { ApiTags } from '@nestjs/swagger';
 export class IQAirController {
   constructor(private readonly service: IQAirService) { }
 
-  @Get('nearst_city')
-  async getNearstCityData(@Query('longitude') longitude: number, @Query('latitude') latitude: number){
-    const nearestCityData = await this.service.getNearestCityData(longitude, latitude);
-    return {
-      Result: {
-        Pollution: nearestCityData.data.current.pollution
+  @Get('nearest_city')
+  async getnearestCityData(@Query('longitude') longitude: number, @Query('latitude') latitude: number) {
+    try {
+      const nearestCityData = await this.service.getNearestCityData(longitude, latitude);
+      return {
+        Result: {
+          Pollution: nearestCityData.data.current.pollution
+        }
       }
+    } catch (error) {
+      return error;
     }
   }
 
   @Get('hieghst_pollution')
   async getHieghstPollution(@Query('longitude') longitude: number, @Query('latitude') latitude: number): Promise<ZonePollution> {
-    return this.service.findHigestZonePollution(longitude, latitude);
+    try {
+      const response = await this.service.findHigestZonePollution(longitude, latitude);
+      return response;
+    } catch(error) {
+      return error;
+    }
+
   }
 }

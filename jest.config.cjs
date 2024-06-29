@@ -4,8 +4,12 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest',
   },
   testEnvironment: 'node',
-  testMatch: ['<rootDir>/tests/**/*.ts'],
-  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
-  roots: ['<rootDir>/tests'],
-  setupFilesAfterEnv: ['jest-extended/all'],
+  moduleFileExtensions: ['ts', 'js', 'json'],
+  rootDir: 'src',
+  testRegex: '.*\\.spec\\.ts$',
+  
+  collectCoverageFrom: [
+    '**/*.(t|j)s'
+  ],
+  coverageDirectory: '../coverage',
 };

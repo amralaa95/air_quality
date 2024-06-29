@@ -1,8 +1,10 @@
+import { Dialect } from "sequelize";
+
 export type DBSharedSettings = {
   host: string;
   port: number;
   database: string;
-  dialect: string;
+  dialect: Dialect;
 };
 
 export type SecretsSettings = {

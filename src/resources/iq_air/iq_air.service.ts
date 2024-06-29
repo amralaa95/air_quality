@@ -16,19 +16,24 @@ export class IQAirService {
 
   }
 
-  async findZonePollution(queryString: { [key: string]: string | number}): Promise<ZonePollution> {
+  async findZonePollution(queryString: { [key: string]: string | number }): Promise<ZonePollution> {
     return this.repository.findOne({ where: { ...queryString }, raw: true });
   }
 
   async findHigestZonePollution(longitude: number, latitude: number): Promise<ZonePollution> {
-    return this.repository.findOne({ where: { longitude, latitude }, order: [[ 'aqius', 'DESC' ]], raw: true });
+    return this.repository.findOne({ where: { longitude, latitude }, order: [['aqius', 'DESC']], raw: true });
   }
 
   async createZonePollution(data: ZonePollution) {
     data.id = uuidv4();
     return this.repository.create(data);
   }
+
   async getNearestCityData(longitude: number, latitude: number) {
-    return this.iqAirProvider.getNearestCityData(longitude, latitude);
+    try {
+      return this.iqAirProvider.getNearestCityData(longitude, latitude);
+    } catch (error) {
+      throw error
+    }
   }
 }

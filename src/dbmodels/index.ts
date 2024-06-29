@@ -1,11 +1,12 @@
-import { ReplicationOptions } from 'sequelize';
+import { Dialect, ReplicationOptions } from 'sequelize';
 import { omit } from 'lodash';
-import { Model, ModelCtor, Repository, Sequelize } from 'sequelize-typescript';
+import { Model, ModelCtor, Repository, Sequelize, SequelizeOptions } from 'sequelize-typescript';
 
 import { ZonePollutionModel } from './models';
 
 export type DatabaseConfig =
   | {
+    dialect: Dialect,
     database: string;
     host: string;
     port?: number;
@@ -13,6 +14,7 @@ export type DatabaseConfig =
     password: string;
   }
   | {
+    dialect: Dialect,
     useReplication: true;
     database?: string;
     port?: number;
@@ -25,13 +27,19 @@ let dbConfig: DatabaseConfig = null;
 
 
 export function getDatabase(): Sequelize {
+  const options: SequelizeOptions = {
+    ...omit(dbConfig, ['useReplication']),
+    repositoryMode: true,
+    models: DB_MODELS
+  };
+
+  if (process.env['NODE_ENV'] === 'test') {
+    options.dialect = 'sqlite';
+    options.storage = ':memory:';
+  }
+
   if (!db) {
-    db = new Sequelize({
-      ...omit(dbConfig, ['useReplication']),
-      dialect: 'postgres',
-      repositoryMode: true,
-      models: DB_MODELS
-    });
+    db = new Sequelize(options);
 
     db.authenticate()
       .then(() => {
@@ -51,4 +59,8 @@ export function getRepository<TModel extends Model>(model: new () => TModel): Re
 
 export function initializeDatabase(config: DatabaseConfig) {
   dbConfig = config;
+}
+
+export function synchronizeAll() {
+  return getDatabase().sync();  
 }
