@@ -9,19 +9,26 @@
 
 A Simple Web API with NestJs, Postgres, Sequelize ORM.
 
-Running the app
-$ yarn
+# Running the app development
+```bash
+$yarn
+```
 
-open src/static/config/dev.json and changes values of secrets.databases.username & secrets.databases.password to your database username & password.
+- Open src/static/config/dev.json and changes values of secrets.databases.username & secrets.databases.password to your database username & password.
 
-for first time (non existing DB)
-run yarn init:db
-Enter your database username & password.
+- For first time (non existing DB)
+```bash
+$yarn init:db
+```
 
-# development
-$ yarn dev
+- Enter your database username & password.
+```bash
+$yarn dev
+```
 
 It'll run the APIs on port 3000 & cronjobs and you can access the APIs in http://localhost:3000/api
 
 # Run tests
-$ yarn test
+```bash
+$yarn test
+```
