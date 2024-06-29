@@ -7,11 +7,11 @@
 
 # NestJS IQ AIR Application
 
-Description
 A Simple Web API with NestJs, Postgres, Sequelize ORM.
 
 Running the app
-run yarn
+$ yarn
+
 open src/static/config/dev.json and changes values of secrets.databases.username & secrets.databases.password to your database username & password.
 
 for first time (non existing DB)

@@ -21,7 +21,7 @@ export class IQAirProvider {
     try {
       const response = await axios({
         method: REQUEST_TYPES[method],
-        url: `${this.iqAirApiBaseUrl}${path}?${queryString}&key=${this.iqAirApiKey}`,
+        url: `${this.iqAirApiBaseUrl}${path}${queryString}&key=${this.iqAirApiKey}`,
         data,
         headers: {
           'Content-Type': 'application/json'
@@ -31,7 +31,6 @@ export class IQAirProvider {
       return response.data;
 
     } catch (error) {
-      // console.log(error)
       if (error.response) {
         /*
          * The request was made and the server responded with a
