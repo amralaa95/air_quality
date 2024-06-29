@@ -14,9 +14,9 @@ fi
 
 echo
 
-HOST=$3
+host=$3
 if [ -z ${HOST} ]; then
-    read -p "Enter host url: " HOST
+    host='localhost'
 fi
 
 echo
@@ -32,7 +32,7 @@ CONFIG=$(cat <<EOF
     "password": "${password}",
     "port": "${port}",
     "database": "air_quality_db",
-    "host": "${HOST}",
+    "host": "${host}",
     "dialect": "postgres",
     "operatorsAliases": "0"
 }

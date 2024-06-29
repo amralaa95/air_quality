@@ -17,12 +17,12 @@ yarn
 
 - Open `src/static/config/dev.json` and changes values of secrets.databases.username & secrets.databases.password to your database username & password.
 
-- For first time (non existing DB)
+- For first time (non existing DB) run next command and enter your database username and password.
 ```bash
 yarn init:db
 ```
 
-- Enter your database username & password.
+- Run the APIs & cronjobs.
 ```bash
 yarn dev
 ```
